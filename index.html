@@ -407,12 +407,15 @@
       <a href="#contact">Contact</a>
     </div>
   </div>
-  <div class="theme-switcher">
-    <span class="theme-label">Theme</span>
-    <button class="theme-btn active" data-mode="dark"  title="Dark"></button>
-    <button class="theme-btn"        data-mode="light" title="Light"></button>
-    <button class="theme-btn"        data-mode="pink"  title="Pink"></button>
-    <button class="theme-btn"        data-mode="blue"  title="Blue"></button>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <a href="https://github.com/Khushigupta1830" target="_blank" style="color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">⌥ GitHub</a>
+    <div class="theme-switcher">
+      <span class="theme-label">Theme</span>
+      <button class="theme-btn active" data-mode="dark"  title="Dark"></button>
+      <button class="theme-btn"        data-mode="light" title="Light"></button>
+      <button class="theme-btn"        data-mode="pink"  title="Pink"></button>
+      <button class="theme-btn"        data-mode="blue"  title="Blue"></button>
+    </div>
   </div>
 </nav>
 
@@ -422,8 +425,9 @@
   <h1>Khushi Gupta</h1>
   <p class="hero-sub">Computer Software Engineer &nbsp;·&nbsp; Delhi, India</p>
   <div class="hero-btns">
-    <a href="mailto:khushigupta1830@gmail.com" class="btn btn-primary">✉ Get In Touch</a>
-    <a href="https://www.linkedin.com/in/khushi-gupta-288208335" target="_blank" class="btn btn-ghost">↗ View LinkedIn</a>
+    <button onclick="copyEmail()" class="btn btn-primary">✉ Get In Touch</button>
+    <a href="https://www.linkedin.com/in/khushi-gupta-288208335" target="_blank" class="btn btn-ghost">↗ LinkedIn</a>
+    <a href="https://github.com/Khushigupta1830" target="_blank" class="btn btn-ghost">⌥ GitHub</a>
   </div>
   <div class="scroll-hint">scroll<span></span></div>
 </div>
@@ -585,18 +589,26 @@
       <div class="contact-text">
         <p>I am always interested in discussing new opportunities, collaborations, and learning experiences. Whether you have a project in mind or simply want to exchange ideas about software development, I would love to hear from you.</p>
         <div class="contact-methods">
-          <a href="mailto:khushigupta1830@gmail.com" class="contact-method">
+          <div class="contact-method" onclick="copyEmail()" style="cursor:pointer;">
             <div class="contact-method-icon">✉️</div>
-            <div>
-              <div class="contact-method-label">Email</div>
-              <div class="contact-method-value">khushigupta1830@gmail.com</div>
+            <div style="flex:1;">
+              <div class="contact-method-label">Email — Click to Copy</div>
+              <div class="contact-method-value">Khushigupta1830@gmail.com</div>
             </div>
-          </a>
+            <div id="copy-badge" style="font-size:0.75rem;background:var(--accent);color:var(--btn-primary-text);padding:4px 10px;border-radius:20px;opacity:0;transition:opacity 0.3s;white-space:nowrap;">Copied! ✓</div>
+          </div>
           <a href="https://www.linkedin.com/in/khushi-gupta-288208335" target="_blank" class="contact-method">
             <div class="contact-method-icon">🔗</div>
             <div>
               <div class="contact-method-label">LinkedIn</div>
-              <div class="contact-method-value">View Profile</div>
+              <div class="contact-method-value">linkedin.com/in/khushi-gupta-288208335</div>
+            </div>
+          </a>
+          <a href="https://github.com/Khushigupta1830" target="_blank" class="contact-method">
+            <div class="contact-method-icon">🐙</div>
+            <div>
+              <div class="contact-method-label">GitHub</div>
+              <div class="contact-method-value">github.com/Khushigupta1830</div>
             </div>
           </a>
         </div>
@@ -605,8 +617,9 @@
         <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:16px;">Ready to Contribute</h3>
         <p>As a recent Computer Software Engineering graduate with a strong foundation in Java and software development principles, I am excited to begin my career. I bring fresh perspectives, dedication to quality, and a genuine passion for creating software solutions.</p>
         <div class="btns">
-          <a href="mailto:khushigupta1830@gmail.com" class="btn btn-primary">Start a Conversation</a>
-          <a href="https://www.linkedin.com/in/khushi-gupta-288208335" target="_blank" class="btn btn-ghost">Connect on LinkedIn</a>
+          <button onclick="copyEmail()" class="btn btn-primary">✉ Copy Email</button>
+          <a href="https://www.linkedin.com/in/khushi-gupta-288208335" target="_blank" class="btn btn-ghost">↗ LinkedIn</a>
+          <a href="https://github.com/Khushigupta1830" target="_blank" class="btn btn-ghost">⌥ GitHub</a>
         </div>
       </div>
     </div>
@@ -616,9 +629,34 @@
 <!-- FOOTER -->
 <footer>
   <p>© 2024 Khushi Gupta &nbsp;·&nbsp; Computer Software Engineer &nbsp;·&nbsp; Delhi, India</p>
+  <p style="margin-top:10px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;">
+    <a onclick="copyEmail()" style="color:var(--accent);text-decoration:none;cursor:pointer;">✉ Copy Email</a>
+    <a href="https://www.linkedin.com/in/khushi-gupta-288208335" target="_blank" style="color:var(--accent);text-decoration:none;">🔗 LinkedIn</a>
+    <a href="https://github.com/Khushigupta1830" target="_blank" style="color:var(--accent);text-decoration:none;">🐙 GitHub</a>
+  </p>
 </footer>
 
 <script>
+  // Copy Email
+  function copyEmail() {
+    navigator.clipboard.writeText('Khushigupta1830@gmail.com').then(() => {
+      const badge = document.getElementById('copy-badge');
+      if (badge) {
+        badge.style.opacity = '1';
+        setTimeout(() => badge.style.opacity = '0', 2500);
+      }
+      // Also show alert as backup
+      const btn = event && event.target;
+      const original = btn ? btn.textContent : '';
+      if (btn && btn.textContent) {
+        btn.textContent = '✓ Copied!';
+        setTimeout(() => btn.textContent = original, 2000);
+      }
+    }).catch(() => {
+      prompt('Copy this email:', 'Khushigupta1830@gmail.com');
+    });
+  }
+
   // Scroll fade-in
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
